@@ -26,8 +26,8 @@ SOURCES1=server.c
 OBJS1=server.o
 
 TARGET2=client
-SOURCES2=client.c
-OBJS2=client.o
+SOURCES2=client.c passfd.c
+OBJS2=client.o passfd.o
 
 TARGETS=$(TARGET1) $(TARGET2)
 OBJS=$(OBJS1) $(OBJS2)
