@@ -93,7 +93,9 @@ int server(char *listen_address, char *listen_port, unsigned long timeout)
       return SERVER_RETRY;
     }
   sockaddr_len=sizeof(peer);
-  if ((cs=accept(s, (struct sockaddr *)&peer, &sockaddr_len))==-1)
+  if ((cs=accept(s,
+		 (struct sockaddr *)&peer,
+		 (socklen_t *)(&sockaddr_len)))==-1)
     {
       perror("accept()");
       close(s);
@@ -101,7 +103,9 @@ int server(char *listen_address, char *listen_port, unsigned long timeout)
       return SERVER_ERROR_ACCEPT;
     }
   sockaddr_len=sizeof(local);
-  if ((getsockname(cs, (struct sockaddr *)&local, &sockaddr_len))!=0)
+  if ((getsockname(cs,
+		   (struct sockaddr *)&local,
+		   (socklen_t *)(&sockaddr_len)))!=0)
     {
       close(s);
       s=-1;
